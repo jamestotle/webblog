@@ -1,0 +1,39 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static "blogs/css/1.css" %}">
+  <title>jiangs' blog</title>
+
+</head>
+<body>
+  <h1 class='title'><a href="/blogs/">jiangs' blog</a></h1>
+    <div class='container'>
+      <div class='side_blank'>&nbsp;</div>
+      <div class='contend'>
+        {% if latest_blog_list %}
+        {% for blog in latest_blog_list %}
+        <div class='blog'>
+        <h1><small><a href='/blogs/{{blog.tag}}/' id='tag'>{{blog.tag}}:</a></small>{{blog.title}}</h1>
+        <p class='blog_context'>{{blog.context}}</p>
+        <p class= 'pub_date'>{{blog.pub_date}}</p>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>no blog post</p>
+        {% endif %}
+        <div class='footer'>
+        <a href="/blogs/{{page_previous}}/" id='previous_link'>上一页</a>第{{page_index}}页 共{{max_page}}页
+        <a href='/blogs/{{page_next}}/' id='next_link'>下一页</a></div>
+      </div>
+      <div class='right_side_bar'><h2 id='faith'>记录</br></br>成长和学习</br>的</br>点滴</h2></div>
+      <div class='side_blank' >&nbsp;</div>
+    </div>
+<script>
+if ({{page_index}}==1)
+{document.getElementById('previous_link').style.display='none';}
+if ({{page_index}}=={{max_page}})
+{document.getElementById('next_link').style.display='none';}
+</script>
+</body>
+</html>

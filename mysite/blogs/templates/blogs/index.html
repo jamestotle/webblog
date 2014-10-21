@@ -1,0 +1,81 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jiangs' Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static "blogs/css/bootstrap.min.css" %}" rel="stylesheet">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <!-- <link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"> -->
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12" bgcolor="black">
+            <h1 class="text-uppercase" ><a href="/blogs/">jiangs' blog</a></h1>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <ul class="thumbnails list-inline">
+                {% if blogs %}
+                {% for blog in blogs %}
+                <li class="span4">
+                    <div class="thumbnail">
+                        <!-- <img class='tag_img' alt="300x200" src="{% static "blogs/img/功能改进2.gif" %}" /> -->
+<!--                        <script>
+                        var x='blogs/img/'+{{blog.tag}}+'.jpg'
+                        var y="{%static "+x+" %}"
+                        document.getElementById('tag_img').src=y
+                        </script> -->
+                        <div class="caption">
+                            <a href='/blogs/tag/{{blog.tag}}/'>{{blog.tag}}:</a>
+                            <h3>
+                                <a href="/blogs/detail/{{blog.id}}/">{{blog.title}}</a>
+                            </h3>
+                            <p>
+                                {{blog.context}}
+                            </p>
+                            <p class='text-right'>
+                                日期：<small>{{blog.pub_date}}</small> 点击次数：<small>{{blog.visit_count}}</small>
+                            </p>
+                            <!-- <p>
+                                <a class="btn btn-primary" href="#">浏览</a> <a class="btn" href="#">分享</a>
+                            </p> -->
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+        <div class="span4">
+            <div class="pagination">
+                <span class="step-links">
+                    {% if blogs.has_previous %}
+                    <a class="text-warning" href="/blogs/{{ blogs.previous_page_number }}" ><strong>&nbsp;&nbsp;&lt&nbsp;&nbsp;</strong></a>
+                    {% endif %}
+                <span class="current">
+                    &nbsp;&nbsp;&nbsp;&nbsp;第 {{ blogs.number }} 页&nbsp;&nbsp;&nbsp;&nbsp;共{{ blogs.paginator.num_pages }}页
+                </span>
+                    {% if blogs.has_next %}
+                    <a class="text-warning" href="/blogs/{{ blogs.next_page_number }}"><strong>&nbsp;&nbsp;&gt&nbsp;&nbsp;</strong></a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery.js"></script> -->
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<!-- <script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js"></script> -->
+<script src="{% static "blogs/js/bootstrap.min.js" %}"></script>
+<script>
+if ({{page_index}}==1)
+document.getElementById("previous_link").style.display='none';
+if ({{page_index}}=={{max_page}})
+document.getElementById("next_link").style.display='none';
+// document.getElementsByTagName("tag_img").src="{% static "blogs/img/功能改进.jpg" %}"
+</script>
+</body>
+</html>

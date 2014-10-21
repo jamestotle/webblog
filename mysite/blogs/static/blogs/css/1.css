@@ -1,0 +1,15 @@
+* {margin:0;padding:0;border:0;}
+body {background-color:#EEEEEE;}
+h1.title {text-transform: uppercase;background-color:#99bbbb;text-indent:2em;}
+div.blog {border:solid 1px;padding:2em;margin:1em;}
+p.blog_context {text-indent: 2em;}
+p.pub_date {text-align:right;padding-right:2em;}
+a {text-decoration:none;}
+div.container{width:100%;}
+div.side_blank,div.contend,div.right_side_bar{float:left;}
+div.contend{width:40%;}
+div.side_blank{width:19%;}
+div.right_side_bar{text-align:center;width:20%;margin-top:300px;}
+/*div {border:1px solid;}*/
+h2#faith{position:relative;top:300px;color:green;}
+small {font-size:15px}
